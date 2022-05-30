@@ -224,7 +224,7 @@ class Cloudinary::Utils
       source = smart_escape(source)
       source_to_sign = source
     else
-      source = smart_escape(URI.decode(source))
+      source = smart_escape(URI::Parser.new.unescape(source))
       source_to_sign = source
       unless url_suffix.blank?
         raise(CloudinaryException, "url_suffix should not include . or /") if url_suffix.match(%r([\./]))

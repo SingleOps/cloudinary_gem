@@ -72,7 +72,7 @@ module Cloudinary
     uri.query.to_s.split("&").each do
       |param|
       key, value = param.split("=")
-      set_config(key=>URI.decode(value))
+      set_config(key=>URI::Parser.new.unescape(value))
     end    
   end
   
